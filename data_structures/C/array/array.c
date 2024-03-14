@@ -63,7 +63,8 @@ void push(DynamicArray* arr, int element) {
 
     arr->A[arr->length++] = element;
 
-    // Time = O(1) - Inserindo no final
+    // Melhor Caso - O(1) - Inserindo no final
+    // Pior caso - O(n) - com a chamada a resize
 }
 
 int get(DynamicArray* arr, int index) {
@@ -80,6 +81,9 @@ void insert(DynamicArray* arr, int index, int element) {
 
     if (index < 0 || index > arr->length)
         return;
+
+    if (arr->length == arr->size)
+        resize(arr);
     
     for (int i = arr->length; i > index; i--)
         arr->A[i] = arr->A[i - 1];
@@ -92,6 +96,10 @@ void insert(DynamicArray* arr, int index, int element) {
 }
 
 void prepend(DynamicArray* arr, int element) {
+
+    if (arr->length == arr->size)
+        resize(arr);
+
     insert(arr, 0, element);
 
     // Time = O(n) - Inserir no começo
