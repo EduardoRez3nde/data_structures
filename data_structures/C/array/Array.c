@@ -1,17 +1,12 @@
+#include "Array.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct DynamicArray {
-    int* A;
-    int size;
-    int length;
-} DynamicArray;
+DynamicArray* allocation() {
 
-static DynamicArray* create() {
-    
     DynamicArray* arr = (DynamicArray*)malloc(16 * sizeof(DynamicArray));
     if (arr == NULL) {
-        return NULL;  
+        return NULL;
     }
 
     arr->A = (int*) malloc(16 * sizeof(int));
@@ -84,10 +79,10 @@ void insert(DynamicArray* arr, int index, int element) {
 
     if (arr->length == arr->size)
         resize(arr);
-    
+
     for (int i = arr->length; i > index; i--)
         arr->A[i] = arr->A[i - 1];
-    
+
     arr->A[index] = element;
     arr->length++;
 
@@ -115,12 +110,12 @@ int pop(DynamicArray* arr) {
 
 void delete(DynamicArray* arr, int index) {
 
-    if (index < 0 || index >= arr->length) 
+    if (index < 0 || index >= arr->length)
         return;
 
     for (int i = index; i < arr->length; i++)
         arr->A[i] = arr->A[i + 1];
-    
+
     arr->length--;
 
     // Melhor Caso - O(1) - deletar do final
@@ -150,25 +145,3 @@ int find(DynamicArray* arr, int element) {
     // Melhor caso - O(1) - se estiver no começo
     // Pior Caso - O(n) - se estiver no final
 }
-
-int main() {
-
-    DynamicArray* array = create();
-
-    push(array, 10);
-    push(array, 20);
-    push(array, 30);
-    push(array, 20);
-    push(array, 50);
-
-    int index = find(array, 60);
-
-
-    for (int i = 0; i < array->length; i++) {
-        printf("%d ", array->A[i]);
-    }
-    printf("\n%d\n", index);
-
-    return 0;
-}
-

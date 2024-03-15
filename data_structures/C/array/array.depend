@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1710485055 source:/home/eduardo/Documentos/workspace/data_structures_algorithms/data_structures/C/array/main.c
+	<stdio.h>
+	<stdlib.h>
+	"Array.h"
+
+1710485103 /home/eduardo/Documentos/workspace/data_structures_algorithms/data_structures/C/array/Array.h
+
+1710485081 source:/home/eduardo/Documentos/workspace/data_structures_algorithms/data_structures/C/array/Array.c
+	"Array.h"
+	<stdlib.h>
+	<stdio.h>
+
