@@ -1,9 +1,10 @@
 package array;
 
-import javax.swing.*;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 @SuppressWarnings("unchecked")
-public class DynamicArray<T> {
+public class DynamicArray<T> implements Iterable<T>, ArrayList<T> {
 
     private T []array;
     private int size;
@@ -41,17 +42,13 @@ public class DynamicArray<T> {
     }
 
     public void remove(T element) {
-
         for (int i = size - 1; i >= 0; i--) {
-            
             if (array[i] == element) {
                 array[i] = array[size - 1];
                 size--;
             }
-
         }
     }
-
     public void insert(int index, T element) {
 
         if (index < 0 || index > size)
@@ -74,10 +71,16 @@ public class DynamicArray<T> {
     }
 
     public T pop() {
+
         if (isEmpty())
             throw new IllegalArgumentException("Array is empty");
-        T temp = array[size - 1];
-        size--;
+
+        T temp = array[--size];
+        array[size] = null;
+
+        if (size > 0 && size == array.length / 4)
+            resize(array.length / 2);
+
         return temp;
     }
 
@@ -107,5 +110,34 @@ public class DynamicArray<T> {
         capacity = newSize;
         array = newArray;
         newArray = null;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayIterator();
+    }
+
+    private class ArrayIterator implements Iterator<T> {
+
+        private int i = 0;
+        private boolean removable;
+
+        @Override
+        public boolean hasNext() {return i < size;}
+
+        @Override
+        public T next() {
+            if (i == size) throw new NoSuchElementException("No next element");
+            removable = true;
+            return array[i++];
+        }
+
+        @Override
+        public void remove() throws IllegalStateException {
+            if (!removable) throw new IllegalStateException("Nothing to remove");
+            DynamicArray.this.delete(i - 1);
+            i--;
+            removable = false;
+        }
     }
 }

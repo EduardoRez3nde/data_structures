@@ -9,6 +9,12 @@ typedef struct DynamicArray {
 
 DynamicArray* allocation();
 
+void bubbleSort(DynamicArray* arr);
+
+void insertionSort(DynamicArray* arr);
+
+void selectionSort(DynamicArray* arr);
+
 void resize(DynamicArray* arr);
 
 int size(DynamicArray* arr);
@@ -25,10 +31,12 @@ void prepend(DynamicArray* arr, int element);
 
 int pop(DynamicArray* arr);
 
-void delete(DynamicArray* arr, int index);
+void del(DynamicArray* arr, int index);
 
 void removes(DynamicArray* arr, int element);
 
 int find(DynamicArray* arr, int element);
+
+
 
 #endif // ARRAY_H_INCLUDED

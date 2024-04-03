@@ -13,11 +13,10 @@ public class MainArray {
         array.push(40);
         array.push(10);
 
-        array.remove(10);
-
-        for (int i = 0; i < array.size(); i++) {
-            System.out.printf("%d ", array.get(i));
+        for (int element : array) {
+            System.out.printf("%d ", element);
         }
+
         System.out.printf("%n%d ", array.getCapacity());
         //System.out.printf("%n%d ", temp);
     }

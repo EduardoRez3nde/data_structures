@@ -108,7 +108,7 @@ int pop(DynamicArray* arr) {
     // Time = O(1)
 }
 
-void delete(DynamicArray* arr, int index) {
+void del(DynamicArray* arr, int index) {
 
     if (index < 0 || index >= arr->length)
         return;
@@ -144,4 +144,56 @@ int find(DynamicArray* arr, int element) {
 
     // Melhor caso - O(1) - se estiver no começo
     // Pior Caso - O(n) - se estiver no final
+}
+
+void swap(int *i, int *j) {
+    int temp = *i;
+    *i = *j;
+    *j = temp;
+}
+
+void bubbleSort(DynamicArray* arr) {
+    int flag = 0;
+    for (int i = 0; i < arr->length - 1; i++) {
+        for (int j = 0; j < arr->length - 1 - i; j++) {
+            if (arr->A[j] > arr->A[j + 1]) {
+                swap(&arr->A[j], &arr->A[j + 1]);
+                flag = 1;
+            }
+        }
+        if (flag == 0) break;
+    }
+    // Melhor Caso (ja Ordenado) = O(n);
+    // Pior Caso = O(n²)
+}
+
+void insertionSort(DynamicArray* arr) {
+
+    for (int i = 1; i < arr->length; i++) {
+        int j = i - 1;
+        int x = arr->A[i];
+
+        while (j >= 0 && arr->A[j] > x) {
+            arr->A[j + 1] = arr->A[j];
+            j--;
+        }
+        arr->A[j + 1] = x;
+    }
+    // min = O(n)
+    // max = O(n²)
+}
+
+void selectionSort(DynamicArray* arr) {
+
+    int i, j, k;
+    for (i = 0; i < arr->length - 1; i++) {
+
+        for (j = k = i; j < arr->length; j++) {
+
+            if (arr->A[j] < arr->A[k])
+                k = j;
+        }
+        swap(&arr->A[i], &arr->A[k]);
+    }
+    // max = O(n²)
 }

@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1710985142 source:/home/eduardo/Documentos/workspace/data_structures_algorithms/data_structures/C/linked_list/main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdlib.h>
+	"SinglyLinkedList.h"
+
+1710985206 /home/eduardo/Documentos/workspace/data_structures_algorithms/data_structures/C/linked_list/SinglyLinkedList.h
+	<stdlib.h>
+	<stdio.h>
+
+1710985109 source:/home/eduardo/Documentos/workspace/data_structures_algorithms/data_structures/C/linked_list/SinglyLinkedList.c
+	"SinglyLinkedList.h"
+	<stdlib.h>
+
